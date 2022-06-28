@@ -297,7 +297,7 @@ function goKeyboard() {
 
   settings.hexHeight = settings.hexSize * 2;
   settings.hexVert = settings.hexHeight * 3 / 4;
-  settings.hexWidth = Math.sqrt(3) / 2 * settings.hexHeight;
+  settings.hexWidth = settings.hexHeight * 3 / 4;
 
   settings.no_labels = document.getElementById('no_labels').checked;
   settings.spectrum_colors = document.getElementById('spectrum_colors').checked;
@@ -405,54 +405,54 @@ function goKeyboard() {
     is_key_event_added = 1;
     settings.pressedKeys = [];
     settings.keyCodeToCoords = {
-      49 : new Point(-5, -2), // 1
-      50 : new Point(-4, -2), // 2
-      51 : new Point(-3, -2), // 3
-      52 : new Point(-2, -2), // 4
-      53 : new Point(-1, -2), // 5
-      54 : new Point(0, -2), // 6
-      55 : new Point(1, -2), // 7
-      56 : new Point(2, -2), // 8
-      57 : new Point(3, -2), // 9
-      48 : new Point(4, -2), // 0
-      189 : new Point(5, -2), // -
-      187 : new Point(6, -2), // =
+      49 : new Point(-8, -2), // 1
+      50 : new Point(-7, -2), // 2
+      51 : new Point(-6, -2), // 3
+      52 : new Point(-5, -2), // 4
+      53 : new Point(-4, -2), // 5
+      54 : new Point(-3, -2), // 6
+      55 : new Point(-2, -2), // 7
+      56 : new Point(-1, -2), // 8
+      57 : new Point(0, -2), // 9
+      48 : new Point(1, -2), // 0
+      189 : new Point(2, -2), // -
+      187 : new Point(3, -2), // =
 
-      81 : new Point(-5, -1), // Q
-      87 : new Point(-4, -1), // W
-      69 : new Point(-3, -1), // E
-      82 : new Point(-2, -1), // R
-      84 : new Point(-1, -1), // T
-      89 : new Point(0, -1), // Y
-      85 : new Point(1, -1), // U
-      73 : new Point(2, -1), // I
-      79 : new Point(3, -1), // O
-      80 : new Point(4, -1), // P
-      219 : new Point(5, -1), // [
-      221 : new Point(6, -1), // ]
+      81 : new Point(-8, -1), // Q
+      87 : new Point(-7, -1), // W
+      69 : new Point(-6, -1), // E
+      82 : new Point(-5, -1), // R
+      84 : new Point(-4, -1), // T
+      89 : new Point(-3, -1), // Y
+      85 : new Point(-2, -1), // U
+      73 : new Point(-1, -1), // I
+      79 : new Point(0, -1), // O
+      80 : new Point(1, -1), // P
+      219 : new Point(2, -1), // [
+      221 : new Point(3, -1), // ]
 
-      65 : new Point(-5, 0), // A
-      83 : new Point(-4, 0), // S
-      68 : new Point(-3, 0), // D
-      70 : new Point(-2, 0), // F
-      71 : new Point(-1, 0), // G
-      72 : new Point(0, 0), // H
-      74 : new Point(1, 0), // J
-      75 : new Point(2, 0), // K
-      76 : new Point(3, 0), // L
-      186 : new Point(4, 0), // ;
-      222 : new Point(5, 0), // '
+      65 : new Point(-8, 0), // A
+      83 : new Point(-7, 0), // S
+      68 : new Point(-6, 0), // D
+      70 : new Point(-5, 0), // F
+      71 : new Point(-4, 0), // G
+      72 : new Point(-3, 0), // H
+      74 : new Point(-2, 0), // J
+      75 : new Point(-1, 0), // K
+      76 : new Point(0, 0), // L
+      186 : new Point(1, 0), // ;
+      222 : new Point(2, 0), // '
 
-      90 : new Point(-5, 1), // Z
-      88 : new Point(-4, 1), // X
-      67 : new Point(-3, 1), // C
-      86 : new Point(-2, 1), // V
-      66 : new Point(-1, 1), // B
-      78 : new Point(0, 1), // N
-      77 : new Point(1, 1), // M
-      188 : new Point(2, 1), // ,
-      190 : new Point(3, 1), // .
-      191 : new Point(4, 1), // /
+      90 : new Point(-8, 1), // Z
+      88 : new Point(-7, 1), // X
+      67 : new Point(-6, 1), // C
+      86 : new Point(-5, 1), // V
+      66 : new Point(-4, 1), // B
+      78 : new Point(-3, 1), // N
+      77 : new Point(-2, 1), // M
+      188 : new Point(-1, 1), // ,
+      190 : new Point(0, 1), // .
+      191 : new Point(1, 1), // /
     };
     window.addEventListener("keydown", onKeyDown, false);
     window.addEventListener("keyup", onKeyUp, false);
@@ -693,7 +693,7 @@ function drawGrid() {
 }
 
 function hexCoordsToScreen(hex) { /* Point */
-  var screenX = settings.centerpoint.x + hex.x * settings.hexWidth + hex.y * settings.hexWidth / 2;
+  var screenX = settings.centerpoint.x + hex.x * settings.hexWidth;
   var screenY = settings.centerpoint.y + hex.y * settings.hexVert;
   return (new Point(screenX, screenY));
 }
@@ -706,8 +706,8 @@ function drawHex(p, c) { /* Point, color */
 
   var x = [];
   var y = [];
-  for (var i = 0; i < 6; i++) {
-    var angle = 2 * Math.PI / 6 * (i + 0.5);
+  for (var i = 0; i < 4; i++) {
+    var angle = 2 * Math.PI / 4 * (i + 0.5);
     x[i] = hexCenter.x + settings.hexSize * Math.cos(angle);
     y[i] = hexCenter.y + settings.hexSize * Math.sin(angle);
   }
@@ -716,7 +716,7 @@ function drawHex(p, c) { /* Point, color */
 
   settings.context.beginPath();
   settings.context.moveTo(x[0], y[0]);
-  for (var i = 1; i < 6; i++) {
+  for (var i = 1; i < 4; i++) {
     settings.context.lineTo(x[i], y[i]);
   }
   settings.context.closePath();
@@ -728,7 +728,7 @@ function drawHex(p, c) { /* Point, color */
   settings.context.save();
   settings.context.beginPath();
   settings.context.moveTo(x[0], y[0]);
-  for (var i = 1; i < 6; i++) {
+  for (var i = 1; i < 4; i++) {
     settings.context.lineTo(x[i], y[i]);
   }
   settings.context.closePath();
@@ -738,8 +738,8 @@ function drawHex(p, c) { /* Point, color */
 
   var x2 = [];
   var y2 = [];
-  for (var i = 0; i < 6; i++) {
-    var angle = 2 * Math.PI / 6 * (i + 0.5);
+  for (var i = 0; i < 4; i++) {
+    var angle = 2 * Math.PI / 4 * (i + 0.5);
     x2[i] = hexCenter.x + (parseFloat(settings.hexSize) + 3) * Math.cos(angle);
     y2[i] = hexCenter.y + (parseFloat(settings.hexSize) + 3) * Math.sin(angle);
   }
@@ -748,7 +748,7 @@ function drawHex(p, c) { /* Point, color */
 
   settings.context.beginPath();
   settings.context.moveTo(x2[0], y2[0]);
-  for (var i = 1; i < 6; i++) {
+  for (var i = 1; i < 4; i++) {
     settings.context.lineTo(x2[i], y2[i]);
   }
   settings.context.closePath();
@@ -765,11 +765,11 @@ function drawHex(p, c) { /* Point, color */
 
   settings.context.beginPath();
   settings.context.moveTo(x[0], y[0]);
-  for (var i = 1; i < 6; i++) {
+  for (var i = 1; i < 4; i++) {
     settings.context.lineTo(x[i], y[i]);
   }
   settings.context.closePath();
-  settings.context.lineWidth = 2;
+  settings.context.lineWidth = 1; // 2; // overlap BUG
   settings.context.lineJoin = 'round';
   settings.context.strokeStyle = 'black';
   settings.context.stroke();
@@ -894,7 +894,10 @@ function getHexCoordsAt(coords) {
   var x = coords.x - settings.centerpoint.x;
   var y = coords.y - settings.centerpoint.y;
 
-  var q = (x * Math.sqrt(3) / 3 - y / 3) / settings.hexSize;
+//rotation of mouse matrix v
+// var q = (x * Math.sqrt(3) / 3 - y / 3) / settings.hexSize;
+
+  var q = x * 2 / 3 / settings.hexSize;
   var r = y * 2 / 3 / settings.hexSize;
 
   q = Math.round(q);
